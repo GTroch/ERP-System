@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zentrale Anforderungen an ein ERP-System</title>
+<meta name="description" content="Interaktives Lernmodul: Was ist ERP, zentrale Anforderungen, Module und Einsatzbereiche, Bereitstellungsmodelle – mit komplexen Aufgaben und Lösungen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121A2C;--ink-2:#1E2A42;
+  --paper:#F3F1EA;--card:#FFFFFF;
+  --line:#D7D2C4;--line-soft:#E7E3D8;
+  --text:#1B2333;--muted:#5C6270;
+  --copper:#C1652B;--copper-soft:#F5E1D2;
+  --teal:#1F6F78;--teal-soft:#DCEBEC;
+  --plum:#6C4F8C;--plum-soft:#E7E0F0;
+  --moss:#4C7A4A;--moss-soft:#DEEBDC;
+  --rose:#B84A5A;--rose-soft:#F3DEE1;
+  --gold:#B4901E;--gold-soft:#F1E8CB;
+  --r:12px;
+  --font-h:"Space Grotesk",Arial,sans-serif;
+  --font-b:"Inter","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--font-b);font-size:16.5px;line-height:1.64;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+h1,h2,h3,h4{font-family:var(--font-h);line-height:1.14;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.6vw,38px);font-weight:700}
+h3{font-size:clamp(19px,2.2vw,24px);font-weight:600;margin:30px 0 10px}
+h4{font-size:17.5px;font-weight:600;margin-bottom:6px}
+p{margin:0 0 15px}
+a{color:var(--teal)}
+strong{font-weight:600}
+:focus-visible{outline:3px solid var(--copper);outline-offset:2px;border-radius:4px}
+
+.hero{position:relative;background:var(--ink);color:#EDEEF2;overflow:hidden;padding:64px 24px 40px}
+.hero-inner{position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(34px,5.4vw,56px);font-weight:700;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1 span{color:var(--copper)}
+.hero-lead{font-size:clamp(16px,1.7vw,19px);color:#B7BCC8;max-width:52ch;margin-bottom:20px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
+.hero-tags span{border:1px solid rgba(237,238,242,.25);border-radius:100px;padding:5px 13px;font-size:13.5px;color:#C6CBD6}
+.hub-wrap{display:flex;justify-content:center}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(243,241,234,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-bar{max-width:1180px;margin:0 auto;display:flex;gap:6px;padding:0 16px;overflow-x:auto}
+.nav a{flex:0 0 auto;padding:13px 11px;font-size:14.5px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.nav a:hover{color:var(--text)}
+.nav a.active{color:var(--ink);border-bottom-color:var(--copper);font-weight:600}
+.progress{height:3px;background:var(--copper);width:0;transition:width .15s linear}
+
+main{max-width:1180px;margin:0 auto;padding:0 24px 90px}
+section{padding:60px 0 8px;border-top:1px solid var(--line-soft)}
+section:first-of-type{border-top:0}
+.kapitel{display:flex;align-items:baseline;gap:13px;margin-bottom:6px}
+.kapitel i{font-style:normal;font-family:var(--font-h);font-weight:700;font-size:14px;color:var(--copper);border:2px solid var(--copper);border-radius:6px;padding:2px 9px}
+.intro{font-size:18.5px;color:var(--muted);max-width:70ch;margin:14px 0 26px}
+.prose{max-width:74ch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:22px 0}
+.tool-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:#FAF9F5}
+.tool-head h4{margin:0;font-size:16.5px}
+.tool-head p{margin:0;font-size:13.5px;color:var(--muted)}
+.tool-body{padding:22px 20px}
+.hint{font-size:13.5px;color:var(--muted);margin-top:12px}
+
+.btn{font-family:var(--font-b);font-size:14.5px;font-weight:600;cursor:pointer;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:8px;padding:9px 16px}
+.btn:hover{background:var(--ink-2)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:#EFEBE0}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--font-b);font-size:13.5px;font-weight:500;cursor:pointer;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
+.chip:hover{color:var(--text);border-color:var(--muted)}
+.chip[aria-pressed="true"],.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.note{border-left:4px solid var(--copper);background:var(--copper-soft);padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0}
+.note b{font-family:var(--font-h)}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:14px 0}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{font-family:var(--font-h);font-size:13.5px;color:var(--muted);font-weight:600}
+tbody tr:hover{background:#FAF9F5}
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{padding:9px 0 9px 24px;position:relative;border-bottom:1px dashed var(--line-soft)}
+ul.clean li::before{content:"";position:absolute;left:3px;top:17px;width:8px;height:8px;background:var(--copper);border-radius:2px}
+
+/* Modul-Karten */
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.modcard{border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:14px 12px;cursor:pointer;text-align:left;font-family:var(--font-b)}
+.modcard b{display:block;font-family:var(--font-h);font-size:15px;color:var(--ink);margin-bottom:3px}
+.modcard span{font-size:12.5px;color:var(--muted)}
+.modcard.on{border-color:var(--copper);box-shadow:0 0 0 3px var(--copper-soft)}
+.moddetail{margin-top:18px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.moddetail-h{padding:16px 20px;color:#fff}
+.moddetail-h h4{margin:0 0 4px;font-size:19px}
+.moddetail-h p{margin:0;font-size:14px;opacity:.92}
+.moddetail-b{padding:18px 20px}
+.tasktag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:#fff;background:var(--ink);border-radius:5px;padding:3px 9px;margin-bottom:8px}
+.solbtn{margin-top:12px}
+.solbox{display:none;margin-top:12px;background:#FAF9F5;border:1px dashed var(--line);border-radius:8px;padding:14px 16px;font-size:15px}
+.solbox.show{display:block}
+.solbox b{font-family:var(--font-h);color:var(--teal)}
+
+/* Anforderungen Tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);padding-bottom:0}
+.tabbtn{font-family:var(--font-b);font-weight:600;font-size:14.5px;background:none;border:none;border-bottom:3px solid transparent;padding:10px 6px;cursor:pointer;color:var(--muted)}
+.tabbtn.on{color:var(--ink);border-color:var(--copper)}
+.tabpanel{display:none;padding-top:18px}
+.tabpanel.on{display:block}
+.reqcard{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-soft)}
+.reqcard .dot{width:9px;height:9px;border-radius:50%;background:var(--copper);margin-top:7px;flex:0 0 auto}
+.reqcard h5{margin:0 0 3px;font-family:var(--font-h);font-size:15.5px}
+.reqcard p{margin:0;font-size:14.5px;color:var(--muted)}
+
+/* Bereitstellung */
+.deploy{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.deploycard{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:#fff}
+.deploycard h4{display:flex;align-items:center;gap:8px}
+.deploycard ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;color:var(--muted)}
+.deploycard li{margin-bottom:6px}
+
+/* Matching-Übung */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.match{grid-template-columns:1fr}}
+.matchcol h5{font-family:var(--font-h);font-size:14.5px;color:var(--muted);margin:0 0 10px}
+.mtile{display:block;width:100%;text-align:left;margin-bottom:8px;cursor:pointer;font-family:var(--font-b);font-size:14.5px;padding:11px 14px;border:2px solid var(--line);background:#fff;border-radius:8px}
+.mtile.sel{border-color:var(--ink);background:#F5F3EC}
+.mtile.done{opacity:.45;cursor:default}
+.mtile.ok{border-color:var(--moss);background:var(--moss-soft)}
+.mtile.bad{border-color:var(--rose);background:var(--rose-soft)}
+.mfeedback{margin-top:12px;font-size:14.5px;padding:11px 15px;border-radius:8px;display:none}
+.mfeedback.show{display:block}
+.mfeedback.good{background:var(--moss-soft);color:#274A25}
+.mfeedback.bad{background:var(--rose-soft);color:#6E2A34}
+
+/* Fallstudien */
+.case{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin-bottom:14px;overflow:hidden}
+.case-h{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.case-h b{font-family:var(--font-h);font-size:16.5px}
+.case-h span{font-size:13px;color:var(--muted)}
+.case-plus{font-size:22px;color:var(--copper);flex:0 0 auto}
+.case-body{display:none;padding:0 20px 20px}
+.case-body.show{display:block}
+.case-scenario{background:#FAF9F5;border-left:3px solid var(--teal);padding:12px 16px;border-radius:0 8px 8px 0;font-size:15px;margin-bottom:14px}
+.case-questions ol{margin:0;padding-left:20px}
+.case-questions li{margin-bottom:8px;font-size:15px}
+.case-solbtn{margin-top:14px}
+.case-sol{display:none;margin-top:14px;background:var(--teal-soft);border-radius:8px;padding:16px 18px}
+.case-sol.show{display:block}
+.case-sol h5{font-family:var(--font-h);color:#0B4A50;margin:0 0 8px;font-size:15px}
+.case-sol ol{margin:0;padding-left:20px}
+.case-sol li{margin-bottom:9px;font-size:14.5px;color:#153B3F}
+
+/* Glossar */
+details.gl{border-bottom:1px solid var(--line-soft);padding:4px 0}
+details.gl summary{cursor:pointer;padding:12px 4px;font-family:var(--font-h);font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.gl summary::-webkit-details-marker{display:none}
+details.gl summary::after{content:"+";color:var(--copper);font-size:22px}
+details.gl[open] summary::after{content:"–"}
+details.gl p{padding:0 4px 14px;margin:0;color:var(--muted);font-size:15px;max-width:70ch}
+
+footer{background:var(--ink);color:#9AA0AE;padding:38px 24px;font-size:14px}
+footer div{max-width:1180px;margin:0 auto}
+footer b{color:#fff;font-family:var(--font-h)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Ein System, eine Datenbank<span>&#8212; alle Abteilungen.</span></h1>
+      <p class="hero-lead">Enterprise Resource Planning verbindet Einkauf, Produktion, Vertrieb, Finanzen und Personal auf einer gemeinsamen Datengrundlage. Dieses Lernmodul zeigt, welche Anforderungen ein ERP-System erfüllen muss, welche Module es dafür braucht &#8212; und stellt dich vor komplexe Aufgaben aus der Praxis.</p>
+      <div class="hero-tags">
+        <span>Wirtschaftsinformatik</span>
+        <span>10 ERP-Module im Überblick</span>
+        <span>9 Fallaufgaben mit Lösung</span>
+      </div>
+    </div>
+    <div class="hub-wrap">
+      <svg viewBox="0 0 380 380" width="380" height="380" role="img" aria-label="ERP-System als zentraler Knoten mit verbundenen Modulen">
+        <defs>
+          <radialGradient id="hubg" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#C1652B"/><stop offset="100%" stop-color="#8C471B"/>
+          </radialGradient>
+        </defs>
+        <g id="hubLines" stroke="rgba(237,238,242,.28)" stroke-width="1.4" fill="none"></g>
+        <g id="hubNodes"></g>
+        <circle cx="190" cy="190" r="46" fill="url(#hubg)"/>
+        <text x="190" y="184" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="15" fill="#fff">ERP</text>
+        <text x="190" y="201" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#F5E1D2">zentrale Datenbank</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Kapitel">
+  <div class="nav-bar">
+    <a href="#erp">1 Was ist ERP</a>
+    <a href="#anforderungen">2 Zentrale Anforderungen</a>
+    <a href="#module">3 Module &amp; Einsatzbereiche</a>
+    <a href="#zuordnung">4 Zuordnungsübung</a>
+    <a href="#bereitstellung">5 Bereitstellung</a>
+    <a href="#fallstudien">6 Fallstudien</a>
+    <a href="#glossar">Glossar</a>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<main>
+
+<!-- ============ 1 ============ -->
+<section id="erp">
+  <div class="kapitel"><i>1</i><h2>Was ist ein ERP-System?</h2></div>
+  <p class="intro">ERP steht für <strong>Enterprise Resource Planning</strong>: die Aufgabe eines Unternehmens, alle verfügbaren Ressourcen so effizient wie möglich zu nutzen. Ein ERP-System bildet dafür alle Geschäftsprozesse digital ab und führt sie auf einer zentralen Datenbank zusammen.</p>
+
+  <div class="prose">
+    <p>Damit verbindet ein ERP-System die Geschäftsprozesse verschiedener Abteilungen in einem gemeinsamen System. Prozesse werden schlanker, abteilungsübergreifend nutzbar und teilweise automatisiert. Weil Unternehmen sich in ihren Geschäftsprozessen stark unterscheiden, ist jede ERP-Software maßgeschneidert &#8211; ein System für einen Großhändler sieht anders aus als eines für ein Bauunternehmen.</p>
+  </div>
+
+  <div class="tool">
+    <div class="tool-head">
+      <div><h4>Vorteile und Nachteile eines ERP-Systems</h4><p>Klicke eine Karte an, um die Begründung zu lesen.</p></div>
+      <div class="chips" id="vnPick" role="group" aria-label="Ansicht wählen">
+        <button class="chip" data-v="vor" aria-pressed="true">Vorteile</button>
+        <button class="chip" data-v="nach" aria-pressed="false">Nachteile</button>
+      </div>
+    </div>
+    <div class="tool-body">
+      <div class="grid3" id="vnGrid"></div>
+      <div class="panel" id="vnDetail" style="margin-top:16px" aria-live="polite">
+        <h4 style="margin:0 0 4px">Karte anklicken</h4>
+        <p style="margin:0;color:var(--muted)">Wähle oben Vorteile oder Nachteile und klicke dann eine Karte an.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Die zentrale Datenbank als Kernidee</h3>
+  <div class="prose">
+    <p>Ohne ERP pflegt jede Abteilung ihre eigenen Listen und Dateien &#8211; Bestände, Kundendaten und Rechnungen existieren mehrfach und geraten außer Takt. Ein ERP-System führt alle Daten <strong>einmal</strong> zusammen: Bucht der Vertrieb einen Auftrag, sieht das Lager ihn sofort, und die Buchhaltung weiß, was zu berechnen ist. Genau das steckt hinter den Modul-Knoten in der Grafik oben &#8211; sie sind eigenständige Werkzeuge, aber durch eine gemeinsame Datenbank verbunden.</p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="anforderungen">
+  <div class="kapitel"><i>2</i><h2>Zentrale Anforderungen an ein ERP-System</h2></div>
+  <p class="intro">Ein ERP-System lässt sich nicht an einem einzigen Kriterium messen. Fünf Anforderungsgruppen entscheiden gemeinsam, ob ein System zu einem Unternehmen passt.</p>
+
+  <div class="tool">
+    <div class="tool-body" style="padding-top:16px">
+      <div class="tabs" id="reqTabs" role="tablist"></div>
+      <div id="reqPanels"></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Merksatz:</b> Ein ERP-System, das funktional perfekt passt, aber das Budget sprengt oder auf der falschen Plattform läuft, ist am Ende keine gute Wahl. Die fünf Anforderungsgruppen müssen gemeinsam erfüllt sein &#8211; das ist der Maßstab, an dem du auch die Fallstudien in Kapitel 6 prüfst.
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="module">
+  <div class="kapitel"><i>3</i><h2>Module und Einsatzbereiche</h2></div>
+  <p class="intro">Ein ERP-System setzt sich aus mehreren Modulen zusammen. Jedes Modul deckt einen bestimmten Einsatzbereich des Unternehmens ab &#8211; verbunden über die zentrale Datenbank. Wähle ein Modul, lies die Beschreibung und löse die dazugehörige komplexe Aufgabe.</p>
+
+  <div class="tool">
+    <div class="tool-head">
+      <div><h4>Zehn ERP-Module im Überblick</h4><p>Klicke ein Modul an, um Beschreibung und Aufgabe zu öffnen.</p></div>
+    </div>
+    <div class="tool-body">
+      <div class="modgrid" id="modGrid"></div>
+      <div id="modDetail"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="zuordnung">
+  <div class="kapitel"><i>4</i><h2>Übung: Einsatzbereich erkennen</h2></div>
+  <p class="intro">Zehn Unternehmenssituationen, zehn Module. Ordne jede Situation dem Modul zu, das die Anforderung am besten löst.</p>
+
+  <div class="tool">
+    <div class="tool-head">
+      <div><h4>Situation anklicken, dann passendes Modul anklicken</h4><p>Nach jeder Zuordnung siehst du sofort, ob sie richtig war.</p></div>
+      <button class="btn ghost" id="matchReset">Neu starten</button>
+    </div>
+    <div class="tool-body">
+      <div class="match">
+        <div class="matchcol"><h5>Unternehmenssituation</h5><div id="matchLeft"></div></div>
+        <div class="matchcol"><h5>ERP-Modul</h5><div id="matchRight"></div></div>
+      </div>
+      <div class="mfeedback" id="matchFeedback"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="bereitstellung">
+  <div class="kapitel"><i>5</i><h2>Bereitstellungsmodelle</h2></div>
+  <p class="intro">Neben den Modulen entscheidet die Plattform darüber, wie ein ERP-System betrieben wird &#8211; und das beeinflusst Kosten, Anpassbarkeit und Verantwortung direkt.</p>
+
+  <div class="deploy" id="deployGrid"></div>
+
+  <h3>Unternehmensgröße als weitere Anforderung</h3>
+  <div class="prose"><p>Die Größe eines Unternehmens hat erheblichen Einfluss auf die Anforderungen an ein ERP-System &#8211; von schlanken Cloud-Lösungen für Selbstständige bis zu Systemen mit hoher Nutzerzahl für Konzerne.</p></div>
+  <table>
+    <thead><tr><th>Größe</th><th>Mitarbeiter</th><th>Typische Anforderung</th></tr></thead>
+    <tbody>
+      <tr><td>Start-Ups / Selbstständige</td><td>bis 10</td><td>rudimentärer Funktionsumfang genügt bereits als Mehrwert</td></tr>
+      <tr><td>Kleine Unternehmen</td><td>bis 25</td><td>kein extensiver Funktionsumfang, oft Cloud wegen geringer Anschaffungskosten</td></tr>
+      <tr><td>KMU</td><td>bis 250</td><td>großes ungenutztes Digitalisierungspotenzial, wachsender Funktionsbedarf</td></tr>
+      <tr><td>Große Unternehmen</td><td>250+</td><td>breiter Funktionsumfang, hohe Anzahl gleichzeitiger Nutzer, oft international</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="fallstudien">
+  <div class="kapitel"><i>6</i><h2>Komplexe Fallstudien</h2></div>
+  <p class="intro">Hier verbindest du Module, Anforderungsgruppen und Bereitstellungsmodelle zu einer vollständigen Empfehlung &#8211; so wie es ein ERP-Berater tun würde. Bearbeite die Fragen zuerst selbst, bevor du die Lösung aufklappst.</p>
+  <div id="caseList"></div>
+</section>
+
+<!-- ============ GLOSSAR ============ -->
+<section id="glossar">
+  <div class="kapitel"><i>A&#8211;Z</i><h2>Glossar</h2></div>
+  <p class="intro">Alle Fachbegriffe dieses Moduls auf einen Blick.</p>
+  <div style="max-width:78ch" id="glossList"></div>
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <p style="margin:0 0 8px"><b>Zentrale Anforderungen an ein ERP-System</b> · Interaktives Lernmodul Wirtschaftsinformatik</p>
+    <p style="margin:0">Inhaltliche Grundlage: erp.de &#8211; Definition, Vor- und Nachteile, Bereitstellungsmodelle, Unternehmensgrößen und Modulübersicht (BI, CRM, DMS, Finanzen, Global Business Management, HRM, LVS/WMS, Produktion, Projektmanagement, SCM). Alle Grafiken dieser Seite sind eingebettet, die Seite funktioniert auch ohne Internetverbindung.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ---------------- Fortschritt & aktives Kapitel ---------------- */
+const bar=$("#progress"), links=$$(".nav a"), secs=$$("main section");
+function onScroll(){
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  bar.style.width=Math.min(100,Math.max(0,p*100))+"%";
+  let cur=secs[0];
+  secs.forEach(s=>{ if(s.getBoundingClientRect().top<=140) cur=s; });
+  links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+cur.id));
+}
+document.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+/* ---------------- Hero: Hub-Diagramm ---------------- */
+const HUBMODS=[
+ ["BI","#1F6F78"],["CRM","#B84A5A"],["DMS","#6C4F8C"],["Finanzen","#B4901E"],
+ ["Global","#C1652B"],["HRM","#4C7A4A"],["WMS","#1F6F78"],["Produktion","#C1652B"],
+ ["Projekt","#6C4F8C"],["SCM","#4C7A4A"]
+];
+(function drawHub(){
+  const cx=190, cy=190, R=150;
+  let lines="", nodes="";
+  HUBMODS.forEach((m,i)=>{
+    const a=(i/HUBMODS.length)*Math.PI*2 - Math.PI/2;
+    const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+    lines+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>';
+    nodes+='<g transform="translate('+x.toFixed(1)+','+y.toFixed(1)+')">'+
+           '<circle r="21" fill="'+m[1]+'"/>'+
+           '<text text-anchor="middle" y="4" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" fill="#fff">'+m[0]+'</text></g>';
+  });
+  $("#hubLines").innerHTML=lines;
+  $("#hubNodes").innerHTML=nodes;
+})();
+
+/* ---------------- 1 · Vor- und Nachteile ---------------- */
+const VOR=[
+ {t:"Automatisierung",x:"Ein ERP-System automatisiert wiederkehrende Prozesse und entlastet Mitarbeitende von Kleinaufgaben, sodass Zeit für anspruchsvollere Tätigkeiten bleibt."},
+ {t:"Sicherheit",x:"Durch die Zentralisierung aller Daten an einem Ort lässt sich Datensicherheit einfacher gewährleisten, als wenn Daten an vielen Stellen einzeln gesichert werden müssten."},
+ {t:"Berichte",x:"Geschäftsprozesse lassen sich permanent überwachen und analysieren. Berichte entstehen auf Knopfdruck und dienen als Entscheidungsgrundlage."},
+ {t:"Zentrale Datenbank",x:"Alle Unternehmensdaten laufen an einem Ort zusammen. Das macht Zusammenarbeit effizienter und Informationen leichter teilbar."},
+ {t:"Einheitliche Methode",x:"Ein ERP-System gibt einheitliche Standards vor, sodass alle Beteiligten auf die gleiche Weise arbeiten – das spart Zeit und erhöht die Qualität."},
+ {t:"Echtzeitdaten",x:"Mitarbeitende verfolgen wichtige Prozesse in Echtzeit und können rechtzeitig reagieren, wenn es irgendwo hakt."}
+];
+const NACH=[
+ {t:"Widerstand",x:"Neue Arbeitsweisen treffen oft auf Widerstand in der Belegschaft. Deshalb sollten Mitarbeitende frühzeitig einbezogen und der Nutzen klar aufgezeigt werden."},
+ {t:"Zeit",x:"Suche, Anpassung und Implementierung beanspruchen viel Zeit – abhängig davon, wie komplex die Anwendung und wie umfangreich die individuellen Anpassungen sind."},
+ {t:"Investition",x:"Ein ERP-System ist eine Investition mit Kosten für Entwicklung, Implementierung und Wartung. Vorab sollten Budget und ROI kalkuliert werden."},
+ {t:"Abhängigkeit",x:"Als zentrale Verwaltungsschnittstelle entsteht eine Abhängigkeit vom System. Ein späterer Wechsel ist möglich, aber mit weniger Aufwand als die Ersteinführung."}
+];
+function drawVN(kind){
+  const data=kind==="vor"?VOR:NACH;
+  $("#vnGrid").innerHTML=data.map((d,i)=>
+    '<button class="modcard" data-i="'+i+'" style="text-align:left"><b>'+esc(d.t)+'</b><span>Karte anklicken für Details</span></button>').join("");
+  $$("#vnGrid .modcard").forEach(b=>b.addEventListener("click",()=>{
+    $$("#vnGrid .modcard").forEach(x=>x.classList.remove("on")); b.classList.add("on");
+    const d=data[parseInt(b.dataset.i,10)];
+    $("#vnDetail").innerHTML='<h4 style="margin:0 0 4px">'+esc(d.t)+'</h4><p style="margin:0;color:var(--muted)">'+d.x+'</p>';
+  }));
+}
+drawVN("vor");
+$$("#vnPick .chip").forEach(c=>c.addEventListener("click",()=>{
+  $$("#vnPick .chip").forEach(x=>x.setAttribute("aria-pressed","false"));
+  c.setAttribute("aria-pressed","true"); drawVN(c.dataset.v);
+}));
+
+/* ---------------- 2 · Anforderungen (Tabs) ---------------- */
+const REQ=[
+ {k:"fun",t:"Funktional",items:[
+   ["Prozessabdeckung","Das System muss die tatsächlichen Geschäftsprozesse abbilden können – ein Großhändler arbeitet anders als ein Bauunternehmen und braucht andere Funktionen."],
+   ["Branchenspezifische Module","Viele Anbieter haben sich auf Branchen spezialisiert und ihre Systeme auf deren Prozesse zugeschnitten."],
+   ["Modulare Erweiterbarkeit","Module wie BI, CRM oder HRM lassen sich je nach Bedarf ergänzen, ohne das Gesamtsystem auszutauschen."]]},
+ {k:"tech",t:"Technisch & Plattform",items:[
+   ["Bereitstellungsmodell","Cloud, gehostet, lokal oder hybrid – die Plattform bestimmt Anschaffungskosten, Anpassbarkeit und Verantwortung für Wartung."],
+   ["Integration/Schnittstellen","Das System muss sich mit bestehenden Programmen und externen Partnern verknüpfen lassen, etwa per EDI."],
+   ["Skalierbarkeit","Die Anzahl gleichzeitiger Nutzer muss mit dem Unternehmen mitwachsen können, insbesondere bei erwarteter Expansion."]]},
+ {k:"org",t:"Organisatorisch",items:[
+   ["Unternehmensgröße","Von rudimentärem Funktionsumfang für Selbstständige bis zu breitem Funktionsumfang mit vielen gleichzeitigen Nutzern für Konzerne."],
+   ["Internationale Tätigkeit","Wer international tätig ist, benötigt mehrere Währungen und die Berücksichtigung unterschiedlicher gesetzlicher Standards."],
+   ["Mehrere Standorte/Lager","Mehrere Niederlassungen oder Lagerhäuser erfordern eine gemeinsame, standortübergreifende Datenbasis."]]},
+ {k:"wirt",t:"Wirtschaftlich",items:[
+   ["Direkte Kosten","Lizenzen, Add-ons, Anpassung des Systems, IT-Infrastruktur und Schulung des Personals."],
+   ["Gemeinkosten","Hardware, künftige Updates, Datensicherung sowie interner Personal- und Zeitaufwand."],
+   ["Budget und ROI","Vor der Auswahl sollten Budget und der erwartete Return on Investment festgelegt werden, um Angebote realistisch zu bewerten."]]},
+ {k:"einf",t:"Einführung",items:[
+   ["Mitarbeitende einbeziehen","Von der Managementebene bis zu jedem einzelnen Mitarbeitenden sollten alle frühzeitig informiert werden, um Widerstand vorzubeugen."],
+   ["Messbare Ziele","Eine IST-Analyse vor der Einführung liefert Vergleichswerte, um den Erfolg – etwa eingesparte Ressourcen oder verbesserte Qualität – später zu messen."],
+   ["Projektteam & Implementierungsplan","Ein Projektleiter mit Teilverantwortlichen je Abteilung erstellt einen Plan, der Reihenfolge und Priorität der Module festlegt."]]}
+];
+$("#reqTabs").innerHTML=REQ.map((r,i)=>'<button class="tabbtn'+(i===0?" on":"")+'" data-k="'+r.k+'" role="tab">'+r.t+'</button>').join("");
+$("#reqPanels").innerHTML=REQ.map((r,i)=>
+  '<div class="tabpanel'+(i===0?" on":"")+'" data-k="'+r.k+'">'+
+  r.items.map(it=>'<div class="reqcard"><div class="dot"></div><div><h5>'+esc(it[0])+'</h5><p>'+it[1]+'</p></div></div>').join("")+
+  '</div>').join("");
+$$("#reqTabs .tabbtn").forEach(b=>b.addEventListener("click",()=>{
+  $$("#reqTabs .tabbtn").forEach(x=>x.classList.remove("on")); b.classList.add("on");
+  $$("#reqPanels .tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.k===b.dataset.k));
+}));
+
+/* ---------------- 3 · Module ---------------- */
+const MOD=[
+ {id:"bi",n:"Business Intelligence",abk:"BI",c:"#1F6F78",
+  d:"Liefert Funktionen zur Analyse und Auswertung der Geschäftsprozesse: KPIs auf Dashboards, Geschäftsberichte auf Knopfdruck und Bedarfsplanung auf Grundlage valider Daten.",
+  task:"Eine Bekleidungskette mit sechs Filialen führt ein BI-Modul ein. Im letzten Monat verkaufte Filiale Nord 3.200 Artikel bei 410.000&#160;&#8364; Umsatz, Filiale Süd 2.600 Artikel bei 380.000&#160;&#8364; Umsatz. Im Vorjahresmonat lag Filiale Nord bei 365.000&#160;&#8364;.<br><br>a) Berechne den durchschnittlichen Bon je Artikel für beide Filialen und vergleiche.<br>b) Berechne die Umsatzwachstumsrate von Filiale Nord gegenüber dem Vorjahr in Prozent.<br>c) Nenne drei KPIs, die auf dem BI-Dashboard der Geschäftsleitung sinnvoll wären, und begründe kurz.<br>d) Erkläre den Unterschied zwischen einem automatisch erzeugten Bericht und einer Bedarfsplanung im BI-Modul.",
+  sol:"a) Filiale Nord: 410.000&#160;&#8364; &#247; 3.200 = <b>128,13&#160;&#8364; je Artikel</b>. Filiale Süd: 380.000&#160;&#8364; &#247; 2.600 = <b>146,15&#160;&#8364; je Artikel</b>. Süd verkauft im Schnitt höherpreisige Artikel.<br>b) (410.000 &#8722; 365.000) &#247; 365.000 &#215; 100 = <b>12,3&#160;% Wachstum</b>.<br>c) Zum Beispiel Umsatz je Filiale und Zeitraum (Steuerung des Sortiments), durchschnittlicher Bon-Wert (Preis- und Verkaufsstrategie), Lagerreichweite je Artikel (Vermeidung von Out-of-Stock). Jede KPI muss auf einen Blick eine Entscheidung stützen.<br>d) Ein Bericht wertet vergangene, bereits vorliegende Daten aus (was ist passiert?). Die Bedarfsplanung nutzt dieselben validen Daten, um zukünftige Bestände oder Personaleinsatz vorherzusagen (was wird gebraucht?)."},
+
+ {id:"crm",n:"Customer-Relationship-Management",abk:"CRM",c:"#B84A5A",
+  d:"Verwaltet und organisiert alle Belange rund um die Kundenbeziehung: Kontakt-Management, Lead-Management und Marketingkampagnen für Kundenservice, Vertrieb und Marketing.",
+  task:"Ein B2B-Softwareanbieter erhält über eine Marketingkampagne 240 neue Leads. 60 davon werden vom Vertrieb qualifiziert, 18 davon münden in ein Angebot, 6 in einen Vertragsabschluss mit durchschnittlich 14.000&#160;&#8364; Jahreswert.<br><br>a) Berechne die Lead-zu-Kunde-Konversionsrate der Kampagne in Prozent.<br>b) Berechne den Gesamtumsatz aus dieser Kampagne im ersten Jahr.<br>c) Beschreibe, wie ein CRM-Modul die vier Stationen Lead &#8594; Qualifizierung &#8594; Angebot &#8594; Abschluss abbilden und für die nächste Kampagne auswertbar machen kann.<br>d) Nenne einen Grund, warum Kontakt-Management und Marketingkampagnen im selben Modul sinnvoller sind als in getrennten Werkzeugen.",
+  sol:"a) 6 &#247; 240 &#215; 100 = <b>2,5&#160;% Konversionsrate</b>.<br>b) 6 &#215; 14.000&#160;&#8364; = <b>84.000&#160;&#8364; Jahresumsatz</b>.<br>c) Jeder Lead wird als Datensatz angelegt und durchläuft im CRM feste Status (Lead-Management). Bei jedem Übergang werden Datum und verantwortliche Person erfasst, sodass sich Durchlaufzeit und Ausfallquote je Station auswerten lassen &#8211; die Grundlage für die BI-Auswertung der nächsten Kampagne.<br>d) Weil Marketingkampagnen und Kontaktverlauf auf denselben Datensatz wirken: Nur so lässt sich ein Abschluss eindeutig auf die Kampagne zurückführen, die ihn ausgelöst hat (Attribution)."},
+
+ {id:"dms",n:"Dokumenten-Management",abk:"DMS",c:"#6C4F8C",
+  d:"Verwaltet, verarbeitet und archiviert alle im Unternehmen umherlaufenden Dokumente revisionssicher in einer klar definierten Ordnerstruktur, einsehbar für alle zugangsberechtigten Akteure.",
+  task:"Ein mittelständisches Ingenieurbüro erhält bei einem Kundenprojekt 40 Dokumente pro Woche: Verträge, Prüfberichte, E-Mails und Konstruktionszeichnungen. Ein Wirtschaftsprüfer verlangt für Verträge eine lückenlose Nachvollziehbarkeit aller Änderungen über zehn Jahre.<br><br>a) Entwirf eine sinnvolle Ordnerstruktur mit mindestens vier Ebenen für dieses Projekt.<br>b) Erkläre den Begriff „revisionssichere Archivierung“ und warum er für die Verträge besonders wichtig ist.<br>c) Nenne zwei Vorteile eines zentralen DMS gegenüber Ordnern auf einzelnen Rechnern der Mitarbeitenden.<br>d) Begründe, wieso Zugriffsrechte je Dokumententyp unterschiedlich vergeben werden sollten.",
+  sol:"a) Beispiel: Kunde &#8594; Projekt &#8594; Dokumentenart (Verträge / Prüfberichte / Korrespondenz / Konstruktion) &#8594; Version bzw. Datum. Vier Ebenen sorgen dafür, dass jedes Dokument eindeutig und ohne Suchen auffindbar ist.<br>b) Revisionssichere Archivierung bedeutet, dass ein einmal abgelegtes Dokument nicht mehr unbemerkt verändert oder gelöscht werden kann; jede Änderung wird nachvollziehbar protokolliert. Für Verträge ist das wichtig, weil im Streitfall oder bei einer Prüfung die ursprüngliche Fassung zweifelsfrei nachweisbar sein muss.<br>c) Alle Berechtigten sehen dieselbe, aktuelle Version (keine widersprüchlichen Kopien); Informationsfluss und Auffindbarkeit sind deutlich schneller als beim Suchen auf einzelnen Rechnern.<br>d) Nicht jede Mitarbeiterin braucht Zugriff auf Verträge oder Personaldaten; eine differenzierte Rechtevergabe schützt sensible Dokumente und erfüllt zugleich Datenschutzanforderungen."},
+
+ {id:"fin",n:"Finanzen",abk:"FIN",c:"#B4901E",
+  d:"Bewältigt buchhalterische Aufgaben sowie Budgetierung, Controlling und Rechnungswesen &#8211; inklusive Unterstützung bei Rechnungsüberprüfung und -erstellung.",
+  task:"Ein Produktionsbetrieb plant für das Quartal ein Budget von 180.000&#160;&#8364; für Rohstoffe. Tatsächlich werden 196.500&#160;&#8364; ausgegeben. Gleichzeitig soll eine Eingangsrechnung über 24.780&#160;&#8364; (netto 20.822,69&#160;&#8364; bei 19&#160;% USt.) im System geprüft werden, bevor sie freigegeben wird.<br><br>a) Berechne die Budgetabweichung in Euro und in Prozent.<br>b) Prüfe rechnerisch, ob der ausgewiesene Bruttobetrag der Rechnung korrekt ist.<br>c) Erkläre, wie ein ERP-Finanzmodul eine solche Rechnungsprüfung automatisch unterstützen kann.<br>d) Nenne einen Unterschied zwischen Controlling und Buchhaltung innerhalb des Finanzmoduls.",
+  sol:"a) 196.500&#160;&#8364; &#8722; 180.000&#160;&#8364; = <b>16.500&#160;&#8364; Überschreitung</b>, das sind 16.500 &#247; 180.000 &#215; 100 = <b>9,2&#160;% über Budget</b>.<br>b) 20.822,69&#160;&#8364; &#215; 1,19 = 24.779,00&#160;&#8364; &#8776; <b>24.780,00&#160;&#8364; &#8211; die Rechnung ist rechnerisch korrekt</b> (Rundungsdifferenz von einem Cent).<br>c) Das Finanzmodul kann die Rechnung automatisch mit der zugehörigen Bestellung und dem Wareneingang abgleichen (Drei-Wege-Abgleich), die Mehrwertsteuer rechnerisch prüfen und erst bei Übereinstimmung zur Freigabe vorschlagen.<br>d) Die Buchhaltung erfasst und dokumentiert abgeschlossene Geschäftsvorfälle (Ist-Zahlen). Das Controlling vergleicht diese Ist-Zahlen laufend mit den geplanten Soll-Zahlen &#8211; wie in Aufgabenteil a) &#8211; und liefert damit die Grundlage für Steuerungsentscheidungen."},
+
+ {id:"gbm",n:"Global Business Management",abk:"GBM",c:"#C1652B",
+  d:"Wird von weltweit tätigen Unternehmen benötigt: Verarbeitung mehrerer Währungen, Berücksichtigung gesetzlicher Standards verschiedener Länder und eine gemeinsame Lagerverwaltung.",
+  task:"Ein deutscher Maschinenbauer eröffnet Niederlassungen in Polen und der Schweiz. Eine Rechnung an den Schweizer Kunden lautet auf 45.000&#160;CHF, der Wechselkurs beträgt 1&#160;EUR&#160;=&#160;0,96&#160;CHF. Beide neuen Standorte sollen auf denselben Lagerbestand wie das deutsche Zentrallager zugreifen können.<br><br>a) Berechne den Rechnungsbetrag in Euro.<br>b) Nenne zwei rechtliche Besonderheiten, die das ERP-System für die Schweiz zusätzlich berücksichtigen muss, obwohl sie geografisch nah liegt.<br>c) Erkläre, welchen Vorteil eine gemeinsame, standortübergreifende Lagerverwaltung für die drei Länder bietet, und nenne ein mögliches Risiko.<br>d) Warum reicht es nicht aus, einfach eine Excel-Tabelle mit Wechselkursen zu pflegen?",
+  sol:"a) 45.000&#160;CHF &#247; 0,96 = <b>46.875&#160;&#8364;</b>.<br>b) Zum Beispiel: eigene Mehrwertsteuersätze und Zollvorschriften, da die Schweiz nicht Mitglied der EU-Zollunion ist; abweichende Rechnungslegungs- und Buchführungsvorschriften.<br>c) Vorteil: Bestände lassen sich standortübergreifend disponieren, sodass zum Beispiel ein Engpass in Polen aus dem deutschen Zentrallager gedeckt werden kann, ohne doppelte Bestellungen. Risiko: Ohne klare Regeln, welcher Standort zuerst bedient wird, kann es zu Konflikten um knappe Ware zwischen den Niederlassungen kommen.<br>d) Eine Exceltabelle ist nicht mit den Buchungen im System verbunden, veraltet schnell, wird nicht automatisch aktualisiert und bietet keine Nachvollziehbarkeit &#8211; das Global-Business-Management-Modul rechnet Kurse dagegen automatisch in Echtzeit und für jede Buchung nachvollziehbar um."},
+
+ {id:"hrm",n:"Human-Resource-Management",abk:"HRM",c:"#4C7A4A",
+  d:"Umfasst Funktionen für alle Personalfragen: Personaleinsatzplanung, unternehmensweite Urlaubsplanung, Weiterbildungsmanagement und Bewerbungsmanagement.",
+  task:"Eine Produktionsabteilung mit 24&#160;Mitarbeitenden benötigt im Juli mindestens 20 anwesende Personen pro Tag wegen eines Großauftrags. Bereits vor der Urlaubsplanung haben 9 Mitarbeitende Urlaub für dieselbe Juli-Woche beantragt. Außerdem müssen alle Mitarbeitenden bis Ende des Jahres eine Pflichtschulung zur Maschinensicherheit nachweisen; bisher haben 15 sie absolviert.<br><br>a) Prüfe rechnerisch, ob die geplante Anwesenheit in der betroffenen Juli-Woche ausreicht, und begründe.<br>b) Beschreibe, wie das HRM-Modul den Konflikt zwischen Urlaubswünschen und Mindestbesetzung sichtbar machen und lösen helfen kann.<br>c) Berechne, wie viele Mitarbeitende die Pflichtschulung noch nachholen müssen, und schlage vor, wie das HRM-Modul die Frist überwacht.<br>d) Nenne eine weitere HRM-Funktion, die in diesem Szenario zusätzlich hilfreich wäre.",
+  sol:"a) 24 &#8722; 9 = <b>15 anwesende Mitarbeitende</b>, das liegt unter der geforderten Mindestbesetzung von 20 &#8211; die Planung reicht <b>nicht aus</b>, es muss nachgesteuert werden.<br>b) Das HRM-Modul zeigt alle Urlaubsanträge und die Mindestbesetzung in einer gemeinsamen Ansicht (unternehmensweite Urlaubsplanung) und markiert automatisch Wochen, in denen die Besetzung unterschritten wird, sodass die Personalplanung rechtzeitig gegensteuern oder Urlaubswünsche verschieben kann.<br>c) 24 &#8722; 15 = <b>9 Mitarbeitende</b> müssen die Schulung noch absolvieren. Das Weiterbildungsmanagement des HRM-Moduls kann automatisch Erinnerungen versenden und den Schulungsstand je Mitarbeitendem als Kennzahl auf einem Dashboard anzeigen.<br>d) Zum Beispiel die Personaleinsatzplanung, mit der sich kurzfristig Springer aus anderen Abteilungen für die Engpasswoche einplanen lassen."},
+
+ {id:"wms",n:"Lagerverwaltungssystem",abk:"LVS/WMS",c:"#1F6F78",
+  d:"Begleitet alle Materialbewegungen vom Wareneingang bis zum Warenausgang, schlägt den besten Lagerort vor, berechnet Routen und ermöglicht eine einfache Auftragszusammenstellung.",
+  task:"Ein Onlinehändler erweitert sein Lager von 1.200 auf 2.000 Stellplätze. Aktuell dauert die Kommissionierung eines Auftrags im Schnitt 6,5 Minuten, davon entfallen 70&#160;% auf Laufwege. Das neue WMS soll die Laufwege durch optimierte Lagerortvorschläge um ein Drittel senken.<br><br>a) Berechne, wie viele Minuten pro Auftrag aktuell auf Laufwege entfallen.<br>b) Berechne die neue Kommissionierzeit pro Auftrag nach Einführung des WMS.<br>c) Berechne die Zeitersparnis bei 300 Aufträgen pro Tag in Stunden.<br>d) Erkläre, mit welchen zwei Funktionen ein WMS diese Einsparung technisch erreicht.",
+  sol:"a) 6,5&#160;Min. &#215; 0,70 = <b>4,55&#160;Minuten Laufweg je Auftrag</b>.<br>b) Neuer Laufweg: 4,55 &#215; (1 &#8722; 1/3) = 3,03&#160;Min. Neue Gesamtzeit: 6,5 &#8722; 4,55 + 3,03 = <b>5,03&#160;Minuten je Auftrag</b> (gerundet).<br>c) Ersparnis je Auftrag: 6,5 &#8722; 5,03 = 1,47&#160;Min. Bei 300 Aufträgen: 300 &#215; 1,47 = 441&#160;Minuten = <b>rund 7,4&#160;Stunden Ersparnis pro Tag</b>.<br>d) Erstens die automatische Lagerortvorschlag-Funktion, die Artikel so platziert, dass häufig kombinierte Artikel nah beieinanderliegen. Zweitens die Routenberechnung, die für jeden Kommissionierauftrag den kürzesten Weg durch das Lager ermittelt."},
+
+ {id:"prod",n:"Produktion",abk:"PROD",c:"#C1652B",
+  d:"Bietet eine CAD-Schnittstelle, Funktionen zur Erstellung und Integration von Stücklisten (BOM) und ermöglicht eine Ressourcenplanung &#8211; alle Prozessschritte werden digital abgebildet.",
+  task:"Ein Fahrradhersteller erhält einen Auftrag über 150 Fahrräder. Laut Stückliste benötigt ein Fahrrad: 2 Laufräder, 1 Rahmen, 1 Schaltung, 1 Sattel. Jedes Laufrad wiederum besteht aus 32 Speichen und 1 Felge. Im Lager sind aktuell 180 Felgen und 5.000 Speichen vorhanden.<br><br>a) Berechne den Gesamtbedarf an Laufrädern, Speichen und Felgen für den Auftrag.<br>b) Prüfe, ob der Lagerbestand an Felgen und Speichen für den Auftrag ausreicht, und gib jeweils die Fehlmenge an.<br>c) Erkläre, wie eine mehrstufige Stückliste (BOM) im Produktionsmodul eine solche Bedarfsrechnung automatisch übernimmt.<br>d) Nenne einen Vorteil der CAD-Schnittstelle für die Pflege dieser Stückliste.",
+  sol:"a) Laufräder: 150 &#215; 2 = <b>300 Laufräder</b>. Felgen: 300 &#215; 1 = <b>300 Felgen</b>. Speichen: 300 &#215; 32 = <b>9.600 Speichen</b>.<br>b) Felgen: Bedarf 300, Bestand 180 &#8594; Fehlmenge <b>120 Felgen</b>. Speichen: Bedarf 9.600, Bestand 5.000 &#8594; Fehlmenge <b>4.600 Speichen</b>. Beide Bestände reichen <b>nicht aus</b>, es muss nachbestellt werden.<br>c) Eine mehrstufige Stückliste hinterlegt für jede Baugruppe (hier: Laufrad) ihre eigenen Unterkomponenten (Speichen, Felge). Bei einer Bedarfsrechnung löst das System die Stückliste automatisch von oben nach unten auf und multipliziert jede Ebene mit der Auftragsmenge &#8211; wie in Teilaufgabe a) von Hand durchgeführt.<br>d) Änderungen an der Konstruktion (z.&#160;B. eine neue Speichenzahl) lassen sich direkt aus dem CAD-System in die Stückliste übernehmen, ohne sie manuell im ERP nachzupflegen &#8211; das verhindert veraltete Stücklisten."},
+
+ {id:"proj",n:"Projektmanagement",abk:"PM",c:"#6C4F8C",
+  d:"Ermöglicht es, Projekte jeglicher Art zu planen, zu steuern und zu verwalten &#8211; mit nachverfolgbaren Projektpipelines, genauer Ressourcenplanung und einfachen Kalkulationen.",
+  task:"Ein IT-Dienstleister kalkuliert ein Kundenprojekt mit 320 Personentagen zu je 850&#160;&#8364;. Bisher sind 210 Personentage geleistet und dabei bereits 198.000&#160;&#8364; an Kosten entstanden. Der ursprüngliche Kostenplan sah für 210 Personentage 178.500&#160;&#8364; vor.<br><br>a) Berechne den geplanten Gesamtumsatz des Projekts.<br>b) Berechne die Kostenabweichung nach 210 geleisteten Personentagen in Euro und in Prozent.<br>c) Schätze auf Basis der bisherigen Abweichung die voraussichtlichen Gesamtkosten des Projekts hoch.<br>d) Erkläre, wie ein Projektmanagement-Modul solche Abweichungen laufend statt erst am Projektende sichtbar macht.",
+  sol:"a) 320 &#215; 850&#160;&#8364; = <b>272.000&#160;&#8364; geplanter Umsatz</b>.<br>b) 198.000&#160;&#8364; &#8722; 178.500&#160;&#8364; = <b>19.500&#160;&#8364; Mehrkosten</b>, das sind 19.500 &#247; 178.500 &#215; 100 &#8776; <b>10,9&#160;% über Plan</b>.<br>c) Kosten je Personentag bisher: 198.000&#160;&#8364; &#247; 210 = 942,86&#160;&#8364;. Hochgerechnet auf 320 Personentage: 320 &#215; 942,86&#160;&#8364; &#8776; <b>301.700&#160;&#8364; voraussichtliche Gesamtkosten</b> &#8211; deutlich über dem geplanten Umsatz von 272.000&#160;&#8364;.<br>d) Jede Buchung von geleisteten Personentagen und entstandenen Kosten fließt sofort in die Projektpipeline ein. Das Modul vergleicht Ist- und Plan-Werte laufend und kann bei Überschreitung automatisch eine Warnung auslösen, statt die Abweichung erst bei der Endabrechnung sichtbar zu machen."},
+
+ {id:"scm",n:"Supply Chain-Management",abk:"SCM",c:"#4C7A4A",
+  d:"Ermöglicht es, alle gesendeten Waren nachzuverfolgen, Barcodes automatisch zu scannen und Daten mittels EDI einfach mit anderen Akteuren auszutauschen.",
+  task:"Ein Zulieferer beliefert einen Automobilhersteller per EDI. Die vereinbarte Wiederbeschaffungszeit beträgt 6&#160;Tage, der durchschnittliche Tagesverbrauch des Kunden liegt bei 420&#160;Teilen, mit einer maximalen Schwankung von 90&#160;Teilen pro Tag nach oben. Der vereinbarte Sicherheitsbestand soll diese maximale Schwankung über die gesamte Wiederbeschaffungszeit abdecken.<br><br>a) Berechne den notwendigen Sicherheitsbestand.<br>b) Berechne den Meldebestand, bei dem eine neue Bestellung ausgelöst werden muss (Wiederbeschaffungszeit &#215; Tagesverbrauch + Sicherheitsbestand).<br>c) Erkläre, wie EDI den automatischen Austausch dieser Bestandsdaten zwischen Zulieferer und Hersteller ermöglicht, ohne dass jemand Daten manuell eingibt.<br>d) Nenne eine Funktion des SCM-Moduls, mit der sich eine einzelne Lieferung nach dem Versand weiterverfolgen lässt.",
+  sol:"a) 90&#160;Teile &#215; 6&#160;Tage = <b>540&#160;Teile Sicherheitsbestand</b>.<br>b) 6&#160;Tage &#215; 420&#160;Teile + 540&#160;Teile = 2.520 + 540 = <b>3.060&#160;Teile Meldebestand</b>.<br>c) EDI überträgt Bestell-, Liefer- und Bestandsdaten in einem standardisierten elektronischen Format direkt zwischen den Systemen beider Unternehmen. Sobald der Bestand des Kunden den Meldebestand erreicht, kann automatisch eine elektronische Bestellung beim Zulieferer ausgelöst werden, ohne dass jemand die Daten abtippt.<br>d) Die automatische Sendungsverfolgung über eine Sendungsnummer, oft in Kombination mit Barcode-Scans an jeder Umschlagstation, macht den Status einer Lieferung jederzeit online abrufbar."}
+];
+
+let modOpen=null;
+$("#modGrid").innerHTML=MOD.map(m=>
+  '<button class="modcard" data-id="'+m.id+'" style="border-top:3px solid '+m.c+'"><b>'+esc(m.abk)+'</b><span>'+esc(m.n)+'</span></button>').join("");
+function openMod(id){
+  const m=MOD.find(x=>x.id===id); if(!m) return;
+  modOpen=id;
+  $$("#modGrid .modcard").forEach(b=>b.classList.toggle("on",b.dataset.id===id));
+  $("#modDetail").innerHTML=
+   '<div class="moddetail">'+
+   '<div class="moddetail-h" style="background:'+m.c+'"><h4>'+esc(m.n)+' <span style="opacity:.75;font-weight:400">('+esc(m.abk)+')</span></h4><p>'+m.d+'</p></div>'+
+   '<div class="moddetail-b">'+
+   '<span class="tasktag">KOMPLEXE AUFGABE</span>'+
+   '<p style="margin:0 0 4px">'+m.task+'</p>'+
+   '<button class="btn ghost solbtn" data-id="'+m.id+'">Lösung anzeigen</button>'+
+   '<div class="solbox" id="sol-'+m.id+'"><b>Lösung.</b> '+m.sol+'</div>'+
+   '</div></div>';
+  $('.solbtn[data-id="'+id+'"]').addEventListener("click",e=>{
+    const box=$("#sol-"+id); const show=!box.classList.contains("show");
+    box.classList.toggle("show",show);
+    e.target.textContent=show?"Lösung ausblenden":"Lösung anzeigen";
+  });
+}
+$("#modGrid").addEventListener("click",e=>{
+  const b=e.target.closest(".modcard"); if(!b) return; openMod(b.dataset.id);
+});
+openMod("bi");
+
+/* ---------------- 4 · Zuordnungsübung ---------------- */
+const MATCH=[
+ {s:"Die Geschäftsleitung will auf einem Dashboard jederzeit die wichtigsten Kennzahlen sehen.",id:"bi"},
+ {s:"Der Vertrieb soll nachverfolgen, in welcher Phase sich jeder Interessent gerade befindet.",id:"crm"},
+ {s:"Ein Prüfbericht darf nach der Ablage nicht mehr unbemerkt verändert werden können.",id:"dms"},
+ {s:"Eine Eingangsrechnung soll automatisch mit Bestellung und Wareneingang abgeglichen werden.",id:"fin"},
+ {s:"Eine neue Auslandsniederlassung soll in ihrer Landeswährung buchen können.",id:"gbm"},
+ {s:"Die Urlaubsplanung mehrerer Abteilungen soll auf Überschneidungen geprüft werden.",id:"hrm"},
+ {s:"Für jeden Kommissionierauftrag soll automatisch der kürzeste Weg durchs Lager berechnet werden.",id:"wms"},
+ {s:"Aus der Stückliste eines Produkts soll der Rohstoffbedarf für einen Großauftrag berechnet werden.",id:"prod"},
+ {s:"Ein Projektleiter will laufend Plan- und Ist-Kosten seines Projekts vergleichen.",id:"proj"},
+ {s:"Zwei Unternehmen wollen Bestell- und Lieferdaten automatisch und ohne manuelle Eingabe austauschen.",id:"scm"}
+];
+let matchSel=null, matchDone=0;
+function drawMatch(){
+  const order=MATCH.map((m,i)=>i).sort(()=>Math.random()-.5);
+  const modOrder=MOD.map(m=>m.id).sort(()=>Math.random()-.5);
+  $("#matchLeft").innerHTML=order.map(i=>'<button class="mtile" data-i="'+i+'">'+esc(MATCH[i].s)+'</button>').join("");
+  $("#matchRight").innerHTML=modOrder.map(id=>{
+    const m=MOD.find(x=>x.id===id);
+    return '<button class="mtile" data-id="'+id+'">'+esc(m.n)+' ('+esc(m.abk)+')</button>';
+  }).join("");
+  matchSel=null; matchDone=0;
+  $("#matchFeedback").className="mfeedback";
+}
+$("#matchLeft").addEventListener("click",e=>{
+  const b=e.target.closest(".mtile"); if(!b||b.classList.contains("done")) return;
+  $$("#matchLeft .mtile").forEach(x=>x.classList.remove("sel"));
+  b.classList.add("sel"); matchSel=parseInt(b.dataset.i,10);
+});
+$("#matchRight").addEventListener("click",e=>{
+  const b=e.target.closest(".mtile"); if(!b||b.classList.contains("done")||matchSel===null) return;
+  const left=$$('#matchLeft .mtile')[Array.from($$('#matchLeft .mtile')).findIndex(x=>parseInt(x.dataset.i,10)===matchSel)];
+  const correct=MATCH[matchSel].id===b.dataset.id;
+  const fb=$("#matchFeedback"); fb.classList.add("show");
+  if(correct){
+    left.classList.add("done","ok"); b.classList.add("done","ok");
+    fb.className="mfeedback show good";
+    fb.textContent="Richtig zugeordnet: "+MOD.find(m=>m.id===b.dataset.id).n+".";
+    matchDone++;
+    if(matchDone===MATCH.length){ fb.textContent="Alle zehn Situationen richtig zugeordnet. Sehr gut!"; }
+  }else{
+    b.classList.add("bad"); setTimeout(()=>b.classList.remove("bad"),650);
+    fb.className="mfeedback show bad";
+    fb.textContent="Das passt noch nicht. Überlege, welche Kernaufgabe des Moduls zur Situation passt, und versuche es erneut.";
+  }
+  matchSel=null; $$("#matchLeft .mtile").forEach(x=>x.classList.remove("sel"));
+});
+$("#matchReset").addEventListener("click",drawMatch);
+drawMatch();
+
+/* ---------------- 5 · Bereitstellungsmodelle ---------------- */
+const DEPLOY=[
+ {t:"Cloud-ERP",c:"#1F6F78",items:[
+   "Der Cloud-Betreiber besitzt Hard- und Software",
+   "Datenspeicherung auf externen Servern / in der Cloud",
+   "Standardisierte Software mit eingeschränkten Anpassungsmöglichkeiten",
+   "Geringe Anschaffungskosten, höhere Folgekosten",
+   "Service erfolgt durch den Cloud-Betreiber, abgegolten mit monatlichem Entgelt"]},
+ {t:"Gehostetes ERP",c:"#6C4F8C",items:[
+   "Software gehört dem Unternehmen, Serverleistung wird angemietet",
+   "Lokale Datenspeicherung auf externen Servern",
+   "Mäßig hohe Anschaffungs- und Folgekosten",
+   "Abbildung individueller Prozesse durch benutzerdefinierte Anpassungen",
+   "Service über Service Level Agreements (SLA) geregelt"]},
+ {t:"Lokales ERP",c:"#B4901E",items:[
+   "Unternehmen besitzt Hard- und Software selbst",
+   "Lokale Datenspeicherung im eigenen Haus",
+   "Hohe Anschaffungskosten, geringere Folgekosten",
+   "Abbildung komplexer, individueller Arbeitsprozesse möglich",
+   "Service über SLA zwischen Anbieter und Unternehmen geregelt"]},
+ {t:"Hybrides ERP",c:"#C1652B",items:[
+   "Mischform aus Cloud- und lokaler Infrastruktur",
+   "Vereint Vor- und Nachteile beider Lizenzmodelle",
+   "Lückenloser Datenaustausch zwischen Infrastrukturen nicht immer ohne Weiteres möglich",
+   "Geeignet, wenn sensible Daten lokal, Standardprozesse in der Cloud laufen sollen"]}
+];
+$("#deployGrid").innerHTML=DEPLOY.map(d=>
+  '<div class="deploycard"><h4><span style="width:10px;height:10px;border-radius:50%;background:'+d.c+';display:inline-block"></span>'+esc(d.t)+'</h4><ul>'+
+  d.items.map(i=>'<li>'+esc(i)+'</li>').join("")+'</ul></div>').join("");
+
+/* ---------------- 6 · Fallstudien ---------------- */
+const CASES=[
+ {t:"Maschinenbauer mit Auslandsexpansion",tag:"Global · Produktion · 180 Mitarbeitende",
+  sz:"Ein Maschinenbauer aus Baden-Württemberg (180 Mitarbeitende) fertigt in Serienfertigung und will erstmals eine Vertriebsniederlassung in Frankreich eröffnen. Die Stücklisten sind komplex, Konstruktionsdaten kommen aus einem CAD-System. Bisher gibt es keine einheitliche Software, jede Abteilung arbeitet mit eigenen Excel-Listen.",
+  q:["Welche drei ERP-Module sind für dieses Unternehmen am dringendsten notwendig? Begründe jeweils mit einem Satz.",
+     "Welche zusätzliche Anforderung entsteht durch die Niederlassung in Frankreich, und welches Modul deckt sie ab?",
+     "Welches Bereitstellungsmodell empfiehlst du angesichts der komplexen, individuellen Fertigungsprozesse – und warum nicht Cloud-ERP?",
+     "Nenne einen organisatorischen Schritt aus der Einführungsphase, der bei 180 Mitarbeitenden besonders wichtig ist."],
+  sol:["Produktion (Stücklisten und CAD-Schnittstelle sind zentral für die Serienfertigung), Finanzen (Buchhaltung und Controlling für ein wachsendes Unternehmen) und Global Business Management (wegen der neuen Auslandsniederlassung). BI wäre ebenfalls sinnvoll, ist aber weniger dringend als die drei genannten.",
+   "Die französische Niederlassung erfordert eine andere Währung sowie französische gesetzliche und steuerliche Standards. Das deckt das <b>Global-Business-Management-Modul</b> ab.",
+   "Bei komplexen, individuellen Fertigungsprozessen mit CAD-Integration sind Anpassungsmöglichkeiten entscheidend. Cloud-ERP bietet standardisierte Software mit eingeschränkten Anpassungsmöglichkeiten – das passt nicht. Empfehlenswert ist <b>gehostetes oder lokales ERP</b>, da beide benutzerdefinierte Anpassungen für individuelle Arbeitsprozesse erlauben.",
+   "Ein Projektteam mit Projektleiter und Teilverantwortlichen je Abteilung sollte gebildet werden, das einen Implementierungsplan erstellt und alle 180 Mitarbeitenden frühzeitig einbezieht, um Widerstand vorzubeugen."]},
+
+ {t:"Regionaler Großhändler geht online",tag:"CRM · WMS · SCM · 60 Mitarbeitende",
+  sz:"Ein Großhändler für Bürobedarf (60 Mitarbeitende, ein Zentrallager) beliefert bislang ausschließlich Geschäftskunden per Telefon und E-Mail. Er plant einen eigenen Webshop und möchte künftig auch Sendungen für Kunden online nachverfolgbar machen. Aktuell werden Kundenkontakte in einer gemeinsamen Excel-Datei gepflegt, die häufig veraltet ist.",
+  q:["Welches Modul löst das Problem der veralteten Kundenkontakte, und mit welcher konkreten Funktion?",
+     "Welches Modul wird für die geplante Sendungsverfolgung benötigt?",
+     "Der Webshop soll direkt in das ERP-System integriert werden. Welche Anforderungsgruppe (aus Kapitel 2) betrifft das vor allem, und was muss dabei geprüft werden?",
+     "Empfiehl ein passendes Bereitstellungsmodell für dieses Unternehmen und begründe mit einem wirtschaftlichen Argument."],
+  sol:["Das <b>CRM-Modul</b> mit seiner Funktion des Kontakt-Managements löst das Problem: Alle Kundenkontakte werden zentral und aktuell in einer Datenbank statt in einer lokalen Exceldatei gepflegt.",
+   "Das <b>SCM-Modul</b>, das die Nachverfolgung gesendeter Waren über Sendungsnummern und Barcode-Scans ermöglicht.",
+   "Das betrifft die <b>technische Anforderung Integration/Schnittstellen</b>. Zu prüfen ist, ob der Webshop und das ERP-System kompatible Schnittstellen haben, damit Bestellungen, Bestände und Kundendaten automatisch synchron bleiben.",
+   "Für ein Unternehmen dieser Größe ohne komplexe Sonderprozesse bietet sich <b>Cloud-ERP</b> an: geringe Anschaffungskosten und schnelle Inbetriebnahme passen zu einem mittelständischen Großhändler, der sein Budget nicht in eine aufwendige Eigeninfrastruktur investieren möchte."]},
+
+ {t:"Bauunternehmen mit vielen Baustellen",tag:"Projektmanagement · DMS · mobil · 45 Mitarbeitende",
+  sz:"Ein Bauunternehmen (45 Mitarbeitende) arbeitet grundsätzlich projektbezogen und beschäftigt auf jeder Baustelle mehrere Subunternehmer gleichzeitig. Verträge, Abnahmeprotokolle und Baupläne werden bislang in Papierform vor Ort verwaltet, was regelmäßig zu Verzögerungen führt, wenn Dokumente fehlen. Die Bauleiter sind fast nie im Büro.",
+  q:["Welches Modul steuert die Projekte selbst, und welche zwei Funktionen sind dafür laut Modulbeschreibung besonders relevant?",
+     "Welches Modul löst das Problem der Papierdokumente auf der Baustelle?",
+     "Welche organisatorische Anforderung ergibt sich daraus, dass die Bauleiter fast nie im Büro sind, und wie könnte sie erfüllt werden?",
+     "Nenne eine Kennzahl, die ein zusätzliches BI-Modul für die Geschäftsleitung dieses Bauunternehmens sinnvoll liefern könnte."],
+  sol:["Das <b>Projektmanagement-Modul</b> steuert die Projekte. Relevant sind die nachverfolgbaren Projektpipelines (Überblick über jede Baustelle) und die Ressourcenplanung (Zuteilung von Personal und Subunternehmern auf die einzelnen Baustellen).",
+   "Das <b>DMS-Modul</b>: Verträge, Abnahmeprotokolle und Baupläne werden zentral und revisionssicher abgelegt und sind für alle Berechtigten – auch von der Baustelle aus – einsehbar, statt in Papierform verloren zu gehen.",
+   "Es ergibt sich die technische Anforderung <b>mobile Verfügbarkeit</b>. Das ERP-System muss über eine mobile Anwendung oder einen Browserzugriff von der Baustelle aus nutzbar sein, damit Bauleiter Dokumente einsehen und Arbeitsaufträge direkt vor Ort bearbeiten können.",
+   "Zum Beispiel die durchschnittliche Kostenabweichung je Bauprojekt (Plan- gegen Ist-Kosten, vergleichbar mit Aufgabenteil c im Modul Projektmanagement) als Frühwarnindikator über alle Baustellen hinweg."]},
+
+ {t:"Startup mit knappem Budget",tag:"Minimalausstattung · 8 Mitarbeitende",
+  sz:"Ein Startup (8 Mitarbeitende) entwickelt eine App und verwaltet Kundenanfragen, Rechnungen und Ausgaben bisher in einer einzelnen Excel-Datei, die für alle immer unübersichtlicher wird. Das Budget für Software ist sehr begrenzt, eine eigene IT-Abteilung gibt es nicht.",
+  q:["Ist ein umfassendes ERP-System mit allen zehn Modulen für dieses Unternehmen sinnvoll? Begründe anhand der Unternehmensgröße.",
+     "Welche zwei Module würdest du diesem Startup zuerst empfehlen, und warum genau diese beiden?",
+     "Welches Bereitstellungsmodell passt zum fehlenden IT-Team und zum begrenzten Budget, und welcher Nachteil ist dabei in Kauf zu nehmen?",
+     "Nenne einen Vorteil, den bereits ein kleines ERP-System diesem Startup gegenüber der bisherigen Excel-Lösung bringt."],
+  sol:["Nein. Laut Einordnung nach Unternehmensgröße benötigen Start-Ups mit bis zu 10 Mitarbeitenden zunächst nur einen rudimentären Funktionsumfang – ein umfassendes System mit allen Modulen wäre überdimensioniert und unnötig teuer.",
+   "<b>Finanzen</b> (Rechnungen und Ausgaben professionell statt in Excel verwalten) und <b>CRM</b> (Kundenanfragen zentral statt in einer unübersichtlichen Tabelle nachverfolgen). Beide Bereiche bereiten laut Szenario bereits jetzt die größten Probleme.",
+   "<b>Cloud-ERP</b> passt am besten: geringe Anschaffungskosten, keine eigene Infrastruktur nötig, und der Service wird vom Cloud-Betreiber übernommen – wichtig, wenn keine eigene IT-Abteilung existiert. Nachteil: standardisierte Software mit eingeschränkten Anpassungsmöglichkeiten, das Startup muss sich also an vorgegebene Abläufe anpassen.",
+   "Alle Daten liegen an einem zentralen Ort statt in einer einzelnen, für alle unübersichtlichen Exceldatei; das reduziert Fehler durch Versionskonflikte und macht Informationen für alle acht Mitarbeitenden gleichzeitig verfügbar."]}
+];
+$("#caseList").innerHTML=CASES.map((c,i)=>
+  '<div class="case"><div class="case-h" data-i="'+i+'"><div><b>'+esc(c.t)+'</b><br><span>'+esc(c.tag)+'</span></div><div class="case-plus">+</div></div>'+
+  '<div class="case-body" id="case-'+i+'">'+
+  '<div class="case-scenario">'+c.sz+'</div>'+
+  '<div class="case-questions"><ol>'+c.q.map(q=>'<li>'+q+'</li>').join("")+'</ol></div>'+
+  '<button class="btn ghost case-solbtn" data-i="'+i+'">Lösung anzeigen</button>'+
+  '<div class="case-sol" id="casesol-'+i+'"><h5>Lösungsvorschlag</h5><ol>'+c.sol.map(s=>'<li>'+s+'</li>').join("")+'</ol></div>'+
+  '</div></div>').join("");
+$$(".case-h").forEach(h=>h.addEventListener("click",()=>{
+  const i=h.dataset.i, body=$("#case-"+i);
+  const open=body.classList.toggle("show");
+  h.querySelector(".case-plus").textContent=open?"\u2013":"+";
+}));
+$$(".case-solbtn").forEach(b=>b.addEventListener("click",e=>{
+  e.stopPropagation();
+  const i=b.dataset.i, box=$("#casesol-"+i); const show=!box.classList.contains("show");
+  box.classList.toggle("show",show); b.textContent=show?"Lösung ausblenden":"Lösung anzeigen";
+}));
+
+/* ---------------- Glossar ---------------- */
+const GLOSS=[
+ ["Bereitstellungsmodell","Legt fest, wo und wie ein ERP-System betrieben wird: Cloud, gehostet, lokal oder hybrid."],
+ ["BI (Business Intelligence)","Modul zur Analyse und Auswertung von Geschäftsprozessen mit Dashboards, Berichten und Bedarfsplanung."],
+ ["CRM (Customer-Relationship-Management)","Modul zur Verwaltung von Kundenbeziehungen: Kontakt-Management, Lead-Management, Marketingkampagnen."],
+ ["DMS (Dokumenten-Management)","Modul zur zentralen, revisionssicheren Verwaltung und Archivierung aller Unternehmensdokumente."],
+ ["EDI","Elektronischer Datenaustausch zwischen zwei Unternehmen, etwa für Bestell- und Lieferdaten, ohne manuelle Eingabe."],
+ ["ERP","Enterprise Resource Planning: die effiziente Nutzung aller Ressourcen eines Unternehmens, unterstützt durch ein zentrales System."],
+ ["Global Business Management","Modul für international tätige Unternehmen: mehrere Währungen, gesetzliche Standards, standortübergreifende Lagerverwaltung."],
+ ["HRM (Human-Resource-Management)","Modul für Personalfragen: Personaleinsatzplanung, Urlaubsplanung, Weiterbildung, Bewerbungsmanagement."],
+ ["KMU","Kleine und mittlere Unternehmen mit weniger als 250 Mitarbeitenden und unter 50 Mio. Euro Jahresumsatz."],
+ ["LVS / WMS","Lagerverwaltungssystem: begleitet Materialbewegungen vom Wareneingang bis zum Warenausgang, berechnet Lagerorte und Routen."],
+ ["Modul","Eigenständiger Baustein eines ERP-Systems für einen bestimmten Einsatzbereich, verbunden über die zentrale Datenbank."],
+ ["Produktionsmodul","Bildet Fertigungsprozesse digital ab: CAD-Schnittstelle, Stücklisten (BOM), Ressourcenplanung."],
+ ["Projektmanagement-Modul","Plant, steuert und verwaltet Projekte über Projektpipelines, Ressourcenplanung und Kalkulationen."],
+ ["ROI (Return on Investment)","Kennzahl, die angibt, ob und wann sich eine Investition wie ein ERP-System finanziell auszahlt."],
+ ["SCM (Supply Chain-Management)","Modul zur Nachverfolgung von Warensendungen, Barcode-Scanning und EDI-Datenaustausch mit Partnern."],
+ ["SLA (Service Level Agreement)","Vertraglich vereinbartes Serviceniveau zwischen Anbieter und Unternehmen, üblich bei gehostetem und lokalem ERP."],
+ ["Stückliste (BOM)","Verzeichnis aller Bauteile und Mengen, die für die Fertigung eines Produkts benötigt werden."],
+ ["Zentrale Datenbank","Der gemeinsame Datenspeicher, auf den alle Module eines ERP-Systems zugreifen – Kernidee des ERP-Konzepts."]
+];
+$("#glossList").innerHTML=GLOSS.map(g=>
+  '<details class="gl"><summary>'+esc(g[0])+'</summary><p>'+g[1]+'</p></details>').join("");
+
+})();
+</script>
+</body>
+</html>
